@@ -12,15 +12,33 @@ body {
   font-family: var(--font-family);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: uppercase;
+  font-family: var(--title-font-family);
+  color: var(--title-color);
+}
+
+.section-header {
+  text-align: center;
+}
+
 .btn-primary {
   background-color: var(--color-btn-primary-bg);
   color: var(--color-btn-primary-color);
-  padding: 0.5rem;
   border: 0;
   border-radius: var(--border-radius);
-
   position: relative;
   display: inline-block;
   padding: 0.5rem 1rem;
   cursor: pointer;
+
+  &.lg {
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+  }
 }

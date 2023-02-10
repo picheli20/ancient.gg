@@ -7,6 +7,7 @@ export interface BoxConnection {
 export interface Box {
   cost: number;
   name: string;
+  slug: string;
   iconUrl: string;
   currency: string;
 }

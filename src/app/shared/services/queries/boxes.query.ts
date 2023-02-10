@@ -7,6 +7,7 @@ export const boxesQuery = gql`
         node {
           id
           name
+          slug
           iconUrl
           cost
           currency
