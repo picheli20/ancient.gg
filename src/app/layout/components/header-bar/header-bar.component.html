@@ -1,4 +1,4 @@
-<img src="assets/logo.webp" class="logo" />
+<img src="assets/logo.webp" class="logo" routerLink="/" />
 <div class="user" *ngIf="user$ | async as user; else loginButton">
   <ng-container *ngFor="let wallet of user.wallets">
     <div class="wallet" *ngIf="wallet.amount > 0">

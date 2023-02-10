@@ -3,7 +3,6 @@
   display: flex;
   box-sizing: border-box;
   z-index: var(--header-bar-z-index);
-
   height: var(--header-height);
   width: 100%;
   top: 0;
@@ -18,16 +17,13 @@
 
   .logo {
     width: 100px;
-    opacity: 0;
+    cursor: pointer;
   }
 
   .user {
-    // TODO: Move to variables
-    background-color: rgba(#fff, 0.5);
-    color: #000;
+    background-color: var(--header-background);
     border-radius: 10px;
     padding: 0.5rem;
-    border: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -58,16 +54,6 @@
 
   &.solid {
     background: var(--header-background);
-
-    .logo {
-      opacity: 1;
-    }
-
-    .user {
-      // TODO: Move to variables
-      background-color: transparent;
-      border: 0;
-      color: #fff;
-    }
+    border-bottom: var(--header-border);
   }
 }
