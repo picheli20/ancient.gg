@@ -20,7 +20,7 @@ export const userReducer = createReducer(
       user: {
         ...state.user,
         wallets: [
-          ...state.user?.wallets.filter(
+          ...(state.user?.wallets || []).filter(
             (wallet) => wallet.id !== action.wallet.id
           ),
           action.wallet,

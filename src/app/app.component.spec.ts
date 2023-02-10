@@ -16,7 +16,7 @@ describe('AppComponent', () => {
         {
           provide: ScrollService,
           useValue: {
-            compute: () => {},
+            compute: () => null,
           },
         },
       ],

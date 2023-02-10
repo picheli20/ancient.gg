@@ -11,7 +11,7 @@ export const WINDOW = new InjectionToken<Window>('WindowToken');
 
 /* Define abstract class for obtaining reference to the global window object. */
 export abstract class WindowRef {
-  get nativeWindow(): Window | Object {
+  get nativeWindow(): Window | object {
     throw new Error('Not implemented.');
   }
 }
@@ -22,7 +22,7 @@ export class BrowserWindowRef extends WindowRef {
     super();
   }
 
-  override get nativeWindow(): Window | Object {
+  override get nativeWindow(): Window | object {
     return window;
   }
 }
@@ -38,8 +38,8 @@ const windowProvider: FactoryProvider = {
   provide: WINDOW,
   useFactory: (
     browserWindowRef: BrowserWindowRef,
-    platformId: Object
-  ): Window | Object => {
+    platformId: object
+  ): Window | object => {
     if (isPlatformBrowser(platformId)) {
       return browserWindowRef.nativeWindow;
     }

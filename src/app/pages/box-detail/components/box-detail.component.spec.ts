@@ -47,7 +47,7 @@ describe('BoxDetailComponent', () => {
         {
           provide: Router,
           useValue: {
-            navigate: (data: any) => data,
+            navigate: (data: string[]) => data,
           },
         },
         {
@@ -113,7 +113,18 @@ describe('BoxDetailComponent', () => {
 
   describe('.cleanBox()', () => {
     it('should clean `boxOpening` array', fakeAsync(() => {
-      component.boxOpening = [1, 2, 3] as any;
+      component.boxOpening = [
+        {
+          id: '123',
+          itemVariant: {
+            currency: 'EUR',
+            iconUrl: 'https://via.placeholder.com/300.png/09f/fff',
+            id: '1',
+            name: 'main',
+            value: 100,
+          },
+        },
+      ];
 
       component.cleanBox();
 

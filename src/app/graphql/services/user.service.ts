@@ -5,7 +5,7 @@ import { filter, map, Subscription } from 'rxjs';
 import { updateWallet } from 'src/app/shared/store/action/user.action';
 import { StoreApp } from 'src/app/shared/store/store-app.interface';
 import { User } from '../interfaces/user.interface';
-import { UpdateWallet, Wallet } from '../interfaces/wallet.interface';
+import { UpdateWallet } from '../interfaces/wallet.interface';
 import { userQuery } from '../queries/user.query';
 import { walletSubscription } from '../subscriptions/wallet.subscription';
 

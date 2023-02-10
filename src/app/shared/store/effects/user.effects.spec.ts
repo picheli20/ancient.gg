@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
+import { TypedAction } from '@ngrx/store/src/models';
 import { provideMockStore } from '@ngrx/store/testing';
 import { Observable, of } from 'rxjs';
 import { UserService } from 'src/app/graphql/services/user.service';
@@ -12,7 +13,7 @@ import { UserEffects } from './user.effects';
 describe('UserEffects', () => {
   let effect: UserEffects;
   let userService: UserService;
-  let actions$ = new Observable<any>();
+  let actions$ = new Observable<TypedAction<string>>();
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,8 +25,8 @@ describe('UserEffects', () => {
           provide: UserService,
           useValue: {
             get: () => Promise.resolve({ father: 'Darth Vader', name: 'Luke' }),
-            watchWallet: () => {},
-            stopWatchWallet: () => {},
+            watchWallet: () => null,
+            stopWatchWallet: () => null,
           },
         },
       ],
@@ -50,7 +51,7 @@ describe('UserEffects', () => {
       tick();
 
       expect(result).toEqual(
-        setUser({ user: { father: 'Darth Vader', name: 'Luke' } as any })
+        setUser({ user: { father: 'Darth Vader', name: 'Luke' } as never })
       );
     }));
   });

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { delay, filter, map, of } from 'rxjs';
+import { filter, map } from 'rxjs';
 import {
   BoxConnection,
   BoxDetail,

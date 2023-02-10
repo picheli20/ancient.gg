@@ -37,7 +37,7 @@ describe('HeaderComponent', () => {
 
         tick();
 
-        expect((component.parallaxModifiers as any)[key]).not.toBe('0px');
+        expect((component.parallaxModifiers as never)[key]).not.toBe('0px');
       }))
     );
   });
