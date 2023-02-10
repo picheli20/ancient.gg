@@ -7,7 +7,8 @@
     "postinstall": "npx husky install",
     "build": "ng build",
     "start:watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test --coverage",
+    "test:watch": "ng test --watch",
     "pretty": "pretty-quick --staged"
   },
   "private": true,

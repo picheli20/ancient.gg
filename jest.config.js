@@ -4,6 +4,8 @@ module.exports = {
       allowSyntheticDefaultImports: true,
     },
   },
+  modulePaths: ["<rootDir>"],
+  moduleDirectories: ["node_modules"],
   transform: {
     "^.+\\.js$": "babel-jest",
   },

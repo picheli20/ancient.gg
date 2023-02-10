@@ -1,33 +1,40 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { UserService } from './graphql/services/user.service';
+import { ScrollService } from './shared/services/scroll.service';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let service: ScrollService;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent],
       providers: [
         {
-          provide: UserService,
+          provide: ScrollService,
           useValue: {
-            get: () => Promise.resolve({}),
+            compute: () => {},
           },
         },
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
+
+    const instance = TestBed.createComponent(AppComponent);
+
+    component = instance.componentInstance;
+    service = TestBed.inject(ScrollService);
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  describe('.onScroll', () => {
+    it('should compute the scroll event', () => {
+      jest.spyOn(service, 'compute');
+      component.onScroll();
 
-  it(`should have as title 'ancient.gg'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ancient.gg');
+      expect(service.compute).toHaveBeenCalledTimes(1);
+    });
   });
 });

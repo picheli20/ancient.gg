@@ -27,12 +27,21 @@ import { StoreApp } from 'src/app/shared/store/store-app.interface';
   animations: [fadeIn],
 })
 export class BoxDetailComponent implements OnInit, OnDestroy {
-  box: BoxDetail | null = null;
-  opening = false;
-  boxOpening: BoxOpening[] = [];
-  isAuthenticated$ = this.store.select(isAuthenticated);
   isAuthenticated = false;
+  boxOpening: BoxOpening[] = [];
+  opening = false;
   error = '';
+  box: BoxDetail | null = null;
+
+  isAuthenticated$ = this.store.select(isAuthenticated);
+  box$ = this.route.paramMap.pipe(
+    switchMap((params) => from(this.boxService.load(params.get('slug') || ''))),
+    tap((box) => {
+      if (!box) {
+        this.router.navigate(['/404']);
+      }
+    })
+  );
 
   private subscription = new Subscription();
 
@@ -44,18 +53,7 @@ export class BoxDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const detailSubscription = this.route.paramMap
-      .pipe(
-        switchMap((params) =>
-          from(this.boxService.load(params.get('slug') || ''))
-        ),
-        tap((box) => {
-          if (!box) {
-            this.router.navigate(['/404']);
-          }
-        })
-      )
-      .subscribe((data) => (this.box = data));
+    const detailSubscription = this.box$.subscribe((data) => (this.box = data));
 
     const authSubscriptions = this.isAuthenticated$.subscribe(
       (data) => (this.isAuthenticated = data)
