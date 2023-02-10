@@ -26,7 +26,7 @@ export class BoxService {
     return result.data.boxes;
   }
 
-  async load(slug: string): Promise<BoxDetail> {
+  async load(slug: string): Promise<BoxDetail | null> {
     const result = await this.apollo
       .watchQuery<{ box: BoxDetail }>({
         query: boxDetailQuery,
