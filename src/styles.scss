@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./styles/main.scss";
+
+body {
+  background-color: var(--background-color);
+  color: var(--color);
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  font-family: var(--font-family);
+}
+
+.btn-primary {
+  background-color: var(--color-btn-primary-bg);
+  color: var(--color-btn-primary-color);
+  padding: 0.5rem;
+  border: 0;
+  border-radius: var(--border-radius);
+
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}

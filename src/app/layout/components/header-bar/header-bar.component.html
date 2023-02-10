@@ -1,0 +1,12 @@
+<img src="assets/logo.webp" class="logo" />
+<div class="user" *ngIf="user$ | async as user; else loginButton">
+  <img [src]="user.avatar" class="avatar" />
+  {{ user.name }}
+</div>
+
+<ng-template #loginButton>
+  <button class="btn-primary" (click)="login()">
+    Login
+    <i class="fa fa-steam"></i>
+  </button>
+</ng-template>

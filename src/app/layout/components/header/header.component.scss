@@ -1,0 +1,72 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, var(--background-color), transparent);
+    z-index: 2;
+  }
+}
+
+.logo,
+.sky {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.logo {
+  width: 80%;
+  max-width: 600px;
+  left: 50%;
+  top: 30%;
+}
+
+.sky {
+  top: 10%;
+}
+
+.landscape {
+  position: absolute;
+  width: 100%;
+  transform: translateX(-50%);
+  height: calc(100vh + 200px);
+  left: 50%;
+  top: 100px;
+  object-fit: cover;
+}
+
+.awp {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  left: 50%;
+  animation: holding-gun 5s infinite;
+  max-width: 80%;
+  min-width: 350px;
+}
+
+@keyframes holding-gun {
+  0% {
+    bottom: 0;
+    transform: rotate(0deg) translateX(-50%);
+  }
+  33% {
+    bottom: 2px;
+  }
+  66% {
+    transform: rotate(-1deg) translateX(-50%);
+    bottom: -2px;
+  }
+  100% {
+    transform: rotate(0deg) translateX(-50%);
+    bottom: 0;
+  }
+}

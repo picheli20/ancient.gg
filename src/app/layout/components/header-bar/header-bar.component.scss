@@ -1,0 +1,57 @@
+:host {
+  position: fixed;
+  display: flex;
+  box-sizing: border-box;
+  z-index: var(--header-bar-z-index);
+
+  height: var(--header-height);
+  width: 100%;
+  top: 0;
+  padding: 0 0.5rem;
+  background: transparent;
+  align-items: center;
+  justify-content: space-between;
+
+  * {
+    transition: all 0.2s ease-out;
+  }
+
+  .logo {
+    width: 100px;
+    opacity: 0;
+  }
+
+  .user {
+    // TODO: Move to variables
+    background-color: rgba(#fff, 0.5);
+    color: #000;
+    border-radius: 10px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+
+    img {
+      width: 40px;
+      border-radius: 50%;
+    }
+  }
+
+  &.solid {
+    background: var(--header-background);
+
+    .logo {
+      opacity: 1;
+    }
+
+    .user {
+      // TODO: Move to variables
+      background-color: transparent;
+      border: 0;
+      color: #fff;
+    }
+  }
+}
