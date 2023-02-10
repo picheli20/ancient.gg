@@ -1,0 +1,10 @@
+<ng-container *ngIf="item">
+  <img [src]="item.iconUrl" />
+  <h4>{{ item.name }}</h4>
+  <div class="balance">
+    <app-balance
+      [currency]="item.currency"
+      [balance]="item.value"
+    ></app-balance>
+  </div>
+</ng-container>

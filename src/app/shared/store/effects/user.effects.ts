@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { from } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
-import { UserService } from '../../services/user.service';
-import { setUser, restoreUser } from '../action/user.action';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { UserService } from '../../../graphql/services/user.service';
+import { logout, restoreUser, setUser } from '../action/user.action';
 
 @Injectable()
 export class UserEffects {
@@ -13,6 +13,24 @@ export class UserEffects {
       switchMap(() => from(this.userService.get())),
       map((payload) => setUser({ user: payload }))
     )
+  );
+
+  watchWallet$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(setUser),
+        tap(() => this.userService.watchWallet())
+      ),
+    { dispatch: false }
+  );
+
+  stopWatchWallet$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(logout),
+        tap(() => this.userService.stopWatchWallet())
+      ),
+    { dispatch: false }
   );
 
   constructor(private actions$: Actions, private userService: UserService) {}

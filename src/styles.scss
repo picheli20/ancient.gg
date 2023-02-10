@@ -37,6 +37,10 @@ h6 {
   padding: 0.5rem 1rem;
   cursor: pointer;
 
+  .btn-title {
+    font-weight: bold;
+  }
+
   &.lg {
     font-size: 1.2rem;
     padding: 0.75rem 1.5rem;

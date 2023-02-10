@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Box } from 'src/app/shared/interfaces/box.interface';
+import { Box } from 'src/app/graphql/interfaces/box.interface';
 
 @Component({
   selector: 'app-box',

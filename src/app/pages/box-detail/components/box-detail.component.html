@@ -1,0 +1,28 @@
+<div class="content" *ngIf="box">
+  <div class="back" routerLink="/"><i class="fa fa-chevron-left"></i> Back</div>
+  <h1 class="section-header">{{ box.name }}</h1>
+  <h3 class="section-header">
+    <app-balance [currency]="box.currency" [balance]="box.cost"></app-balance>
+  </h3>
+  <div class="description" *ngIf="box.description">{{ box.description }}</div>
+  <div class="box-wrapper">
+    <img
+      [src]="box.iconUrl"
+      class="box-icon"
+      [class.deactivated]="!opening"
+      [class.opening]="opening"
+    />
+    <button class="btn-primary" (click)="open()" *ngIf="!opening">
+      <div class="btn-title">Open for:</div>
+      <app-balance [currency]="box.currency" [balance]="box.cost"></app-balance>
+    </button>
+  </div>
+
+  <h2 class="section-header">In this box:</h2>
+  <div class="slot-wrapper">
+    <div class="slot" *ngFor="let slot of box.slots">
+      <div class="rate">{{ slot.rate }}%</div>
+      <app-item class="slot" [item]="slot.item"></app-item>
+    </div>
+  </div>
+</div>

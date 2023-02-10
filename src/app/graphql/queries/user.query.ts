@@ -9,6 +9,7 @@ export const userQuery = gql`
       wallets {
         id
         amount
+        name
         currency
       }
     }

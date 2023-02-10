@@ -3,7 +3,7 @@
   <h1 class="section-header">Boxes</h1>
   <div class="box-wrapper">
     <app-box
-      *ngFor="let box of (boxes$ | async).edges"
+      *ngFor="let box of (boxes$ | async)?.edges"
       [box]="box.node"
     ></app-box>
   </div>

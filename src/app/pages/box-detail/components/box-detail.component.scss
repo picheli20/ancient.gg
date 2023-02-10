@@ -1,0 +1,73 @@
+:host {
+  display: block;
+  margin-top: var(--header-height);
+}
+
+.box-icon {
+  display: block;
+  margin: 0 auto;
+}
+
+.description {
+  max-width: 90%;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.slot-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+
+  .slot {
+    position: relative;
+
+    app-item {
+      width: 250px;
+    }
+
+    .rate {
+      opacity: 0.5;
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+    }
+  }
+}
+
+.box-wrapper {
+  position: relative;
+
+  img {
+    max-width: 90%;
+    min-height: 100px;
+
+    &.deactivated {
+      opacity: 0.5;
+    }
+
+    &.opening {
+      animation: shake 0.5s infinite;
+    }
+  }
+
+  .btn-primary {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    box-shadow: 0 0 10px #000;
+    width: 300px;
+    font-size: 1.2rem;
+  }
+}
+
+.back {
+  padding: 0.5rem;
+  cursor: pointer;
+
+  .fa {
+    margin-right: 0.5rem;
+  }
+}

@@ -1,8 +1,10 @@
-<div *ngIf="box" class="box-wrapper">
+<div *ngIf="box" class="box-wrapper" [routerLink]="['/box', box.slug]">
   <img [src]="box.iconUrl" />
   <h4 class="title">{{ box.name }}</h4>
-  <div>{{ box.cost }} {{ box.currency }}</div>
-  <button class="btn-primary">Open</button>
+  <div>
+    <app-balance [currency]="box.currency" [balance]="box.cost"></app-balance>
+  </div>
+  <button class="btn-primary">View</button>
 
   <div class="backdrop"></div>
 </div>

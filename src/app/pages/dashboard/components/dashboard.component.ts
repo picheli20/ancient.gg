@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { from } from 'rxjs';
-import { BoxService } from 'src/app/shared/services/box.service';
+import { BoxService } from 'src/app/graphql/services/box.service';
 
 @Component({
   selector: 'app-dashboard',

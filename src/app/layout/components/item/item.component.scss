@@ -1,0 +1,27 @@
+:host {
+  border: 1px solid var(--primary-color);
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  align-items: center;
+
+  img {
+    width: 90%;
+    height: 200px;
+    object-fit: contain;
+  }
+
+  h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0.5rem 1rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .balance {
+    text-align: center;
+  }
+}

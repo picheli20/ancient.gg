@@ -1,7 +1,17 @@
 <img src="assets/logo.webp" class="logo" />
 <div class="user" *ngIf="user$ | async as user; else loginButton">
-  <img [src]="user.avatar" class="avatar" />
-  {{ user.name }}
+  <ng-container *ngFor="let wallet of user.wallets">
+    <div class="wallet" *ngIf="wallet.amount > 0">
+      <div class="wallet-name">{{ wallet.name.toLowerCase() }}</div>
+      <app-balance
+        [balance]="wallet.amount"
+        [currency]="wallet.currency"
+      ></app-balance>
+    </div>
+  </ng-container>
+  <div class="avatar">
+    <img [src]="user.avatar" class="avatar" />
+  </div>
 </div>
 
 <ng-template #loginButton>
