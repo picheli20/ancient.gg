@@ -21,10 +21,8 @@
   --color-btn-disabled-color: rgb(60, 60, 60);
   --border-radius: 2px;
   --error-color: #eb445a;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
+  @media (prefers-color-scheme: dark) {
     --background-color: #262a30;
     --background-color-rgb: 38, 42, 48;
 

@@ -16,6 +16,20 @@
   }
 }
 
+.night {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .day {
+    display: none;
+  }
+
+  .night {
+    display: block;
+  }
+}
+
 .logo,
 .landscape,
 .awp,
