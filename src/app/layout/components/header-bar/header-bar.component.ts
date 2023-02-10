@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import {
   Component,
   HostBinding,
@@ -9,8 +8,10 @@ import {
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { ScrollService } from 'src/app/shared/services/scroll.service';
+import { WINDOW } from 'src/app/shared/services/window.service';
 import { getUser } from 'src/app/shared/store/selector/user.selector';
 import { StoreApp } from 'src/app/shared/store/store-app.interface';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header-bar',
@@ -30,7 +31,7 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
   constructor(
     private scrollService: ScrollService,
     private store: Store<StoreApp>,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(WINDOW) private window: Window
   ) {}
 
   ngOnInit(): void {
@@ -46,12 +47,6 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
   }
 
   login() {
-    const window = this.document.defaultView;
-
-    if (!window) {
-      return;
-    }
-
-    window.location.href = `https://api-staging.csgoroll.com/auth/steam?redirectUri=${window.location.href}`;
+    this.window.location.href = `${environment.loginUrl}${this.window.location.href}`;
   }
 }

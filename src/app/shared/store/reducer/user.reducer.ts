@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { logout, setUser, updateWallet } from '../action/user.action';
 import { UserState } from '../state/user-state.interface';
 
-const initialState: UserState = {
+export const initialState: UserState = {
   user: null,
 };
 

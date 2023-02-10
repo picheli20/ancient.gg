@@ -21,7 +21,7 @@ describe('BoxDetailComponent', () => {
           provide: BoxService,
           useValue: {
             load: () => Promise.resolve({ foo: 'bar' }),
-            open: (data: any) =>
+            open: () =>
               of([
                 {
                   id: '123-abc',
@@ -83,7 +83,7 @@ describe('BoxDetailComponent', () => {
     it('should set `box`', fakeAsync(() => {
       component.ngOnInit();
 
-      tick(500);
+      tick();
 
       expect(component.box).toEqual({ foo: 'bar' });
     }));
@@ -92,7 +92,7 @@ describe('BoxDetailComponent', () => {
       expect(component.isAuthenticated).toEqual(false);
       component.ngOnInit();
 
-      tick(500);
+      tick();
 
       expect(component.isAuthenticated).toEqual(true);
     }));
@@ -104,7 +104,7 @@ describe('BoxDetailComponent', () => {
 
         component.ngOnInit();
 
-        tick(500);
+        tick();
 
         expect(router.navigate).toHaveBeenCalledWith(['/404']);
       }));
@@ -141,7 +141,7 @@ describe('BoxDetailComponent', () => {
 
       component.open();
 
-      tick(500);
+      tick();
 
       expect(boxService.open).toHaveBeenCalled();
       expect(component.boxOpening.length).toEqual(1);
