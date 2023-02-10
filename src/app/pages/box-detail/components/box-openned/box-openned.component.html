@@ -1,0 +1,10 @@
+<div class="modal" #modal>
+  <h1 class="section-title">You won:</h1>
+  <div class="items-wrapper">
+    <app-item
+      *ngFor="let box of boxOpening"
+      [item]="box.itemVariant"
+    ></app-item>
+  </div>
+  <button class="btn-primary lg" (click)="close()">Amazing!</button>
+</div>

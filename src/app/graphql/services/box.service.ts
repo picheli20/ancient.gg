@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { delay, map, of } from 'rxjs';
+import { delay, filter, map, of } from 'rxjs';
 import {
   BoxConnection,
   BoxDetail,
@@ -39,7 +39,13 @@ export class BoxService {
 
   open(input: { amount: number; boxId: string; multiplierBoxBet: number }) {
     return this.apollo
-      .mutate<BoxOpeningPayload>({ mutation: openBox, variables: { input } })
-      .pipe(map((data) => data.data?.openBox));
+      .mutate<{ openBox: BoxOpeningPayload }>({
+        mutation: openBox,
+        variables: { input },
+      })
+      .pipe(
+        map((data) => data.data?.openBox.boxOpenings),
+        filter(Boolean)
+      );
   }
 }

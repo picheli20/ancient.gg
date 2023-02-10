@@ -1,4 +1,9 @@
 :root {
-  --header-background: rgb(38, 42, 48);
-  --header-border: 1px solid #333;
+  --header-background: rgb(237, 238, 238);
+  --header-border: 1px solid rgb(177, 177, 177);
+
+  @media (prefers-color-scheme: dark) {
+    --header-background: rgb(38, 42, 48);
+    --header-border: 1px solid #333;
+  }
 }

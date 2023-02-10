@@ -1,24 +1,36 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { finalize, from, map, Subscription, switchMap, tap } from 'rxjs';
-import { BoxDetail } from 'src/app/graphql/interfaces/box.interface';
+import { Store } from '@ngrx/store';
+import { finalize, from, Subscription, switchMap, tap } from 'rxjs';
+import {
+  BoxDetail,
+  BoxOpening,
+} from 'src/app/graphql/interfaces/box.interface';
 import { BoxService } from 'src/app/graphql/services/box.service';
+import { fadeIn } from 'src/app/shared/animations/fade-in.animation';
+import { isAuthenticated } from 'src/app/shared/store/selector/user.selector';
+import { StoreApp } from 'src/app/shared/store/store-app.interface';
 
 @Component({
   selector: 'app-box-detail',
   templateUrl: './box-detail.component.html',
   styleUrls: ['./box-detail.component.scss'],
+  animations: [fadeIn],
 })
 export class BoxDetailComponent implements OnInit, OnDestroy {
   box: BoxDetail | null = null;
   opening = false;
+  boxOpening: BoxOpening[] = [];
+  isAuthenticated$ = this.store.select(isAuthenticated);
+  isAuthenticated = false;
 
   private subscription = new Subscription();
 
   constructor(
     private boxService: BoxService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private store: Store<StoreApp>
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +47,12 @@ export class BoxDetailComponent implements OnInit, OnDestroy {
       )
       .subscribe((data) => (this.box = data));
 
+    const authSubscriptions = this.isAuthenticated$.subscribe(
+      (data) => (this.isAuthenticated = data)
+    );
+
     this.subscription.add(detailSubscription);
+    this.subscription.add(authSubscriptions);
   }
 
   ngOnDestroy(): void {
@@ -57,7 +74,11 @@ export class BoxDetailComponent implements OnInit, OnDestroy {
       })
       .pipe(finalize(() => (this.opening = false)))
       .subscribe((data) => {
-        console.log(JSON.stringify(data));
+        this.boxOpening = data;
       });
+  }
+
+  cleanBox() {
+    this.boxOpening = [];
   }
 }

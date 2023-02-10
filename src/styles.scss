@@ -23,7 +23,7 @@ h6 {
   color: var(--title-color);
 }
 
-.section-header {
+.section-title {
   text-align: center;
 }
 
@@ -36,6 +36,12 @@ h6 {
   display: inline-block;
   padding: 0.5rem 1rem;
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.9;
+    filter: grayscale(100%);
+    cursor: not-allowed;
+  }
 
   .btn-title {
     font-weight: bold;

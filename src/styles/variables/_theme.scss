@@ -17,7 +17,10 @@
 
   --color-btn-primary-bg: var(--primary-color);
   --color-btn-primary-color: #fff;
+  --color-btn-disabled-bg: rgb(119, 119, 119);
+  --color-btn-disabled-color: rgb(60, 60, 60);
   --border-radius: 2px;
+  --error-color: #eb445a;
 }
 
 @media (prefers-color-scheme: dark) {

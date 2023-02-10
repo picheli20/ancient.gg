@@ -28,7 +28,7 @@ export interface BoxDetail {
 }
 
 export interface BoxOpeningPayload {
-  openBox: BoxOpening[];
+  boxOpenings: BoxOpening[];
 }
 
 export interface BoxOpening {

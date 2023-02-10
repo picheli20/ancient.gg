@@ -1,9 +1,12 @@
 <div class="content" *ngIf="box">
   <div class="back" routerLink="/"><i class="fa fa-chevron-left"></i> Back</div>
-  <h1 class="section-header">{{ box.name }}</h1>
-  <h3 class="section-header">
+  <h1 class="section-title">{{ box.name }}</h1>
+  <h3 class="section-title">
     <app-balance [currency]="box.currency" [balance]="box.cost"></app-balance>
   </h3>
+  <div class="not-authenticated" *ngIf="!isAuthenticated">
+    You must be loggedin in order to open the boxes.
+  </div>
   <div class="description" *ngIf="box.description">{{ box.description }}</div>
   <div class="box-wrapper">
     <img
@@ -12,13 +15,18 @@
       [class.deactivated]="!opening"
       [class.opening]="opening"
     />
-    <button class="btn-primary" (click)="open()" *ngIf="!opening">
+    <button
+      class="btn-primary"
+      (click)="open()"
+      *ngIf="!opening"
+      [disabled]="!isAuthenticated"
+    >
       <div class="btn-title">Open for:</div>
       <app-balance [currency]="box.currency" [balance]="box.cost"></app-balance>
     </button>
   </div>
 
-  <h2 class="section-header">In this box:</h2>
+  <h2 class="section-title">In this box:</h2>
   <div class="slot-wrapper">
     <div class="slot" *ngFor="let slot of box.slots">
       <div class="rate">{{ slot.rate }}%</div>
@@ -26,3 +34,10 @@
     </div>
   </div>
 </div>
+
+<app-box-openned
+  *ngIf="boxOpening.length > 0"
+  @fadeIn
+  [boxOpening]="boxOpening"
+  (closed)="cleanBox()"
+></app-box-openned>
