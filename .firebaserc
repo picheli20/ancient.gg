@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ancientgg-2f399": {
+      "hosting": {
+        "ancient.gg": [
+          "ancientgg-2f399"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ancientgg-2f399"
+  }
+}

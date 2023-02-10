@@ -107,6 +107,16 @@
           "options": {
             "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "ancient.gg:build:production",
+            "firebaseProject": "ancientgg-2f399",
+            "firebaseHostingSite": "ancientgg-2f399"
+          }
         }
       }
     }

@@ -7,9 +7,6 @@ const routes: Routes = [
     pathMatch: 'full',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-    data: {
-      transparentHeader: true,
-    },
   },
   {
     path: 'box',
