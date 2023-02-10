@@ -4,8 +4,16 @@
   <h3 class="section-title">
     <app-balance [currency]="box.currency" [balance]="box.cost"></app-balance>
   </h3>
-  <div class="not-authenticated" *ngIf="!isAuthenticated">
-    You must be loggedin in order to open the boxes.
+  <div class="error" *ngIf="!isAuthenticated || error">
+    <ng-container *ngIf="error">
+      Something went wrong!
+      <code>
+        {{ error }}
+      </code>
+    </ng-container>
+    <ng-container *ngIf="!isAuthenticated">
+      You must be loggedin in order to open the boxes.
+    </ng-container>
   </div>
   <div class="description" *ngIf="box.description">{{ box.description }}</div>
   <div class="box-wrapper">

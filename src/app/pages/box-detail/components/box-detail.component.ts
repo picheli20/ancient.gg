@@ -1,7 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { finalize, from, Subscription, switchMap, tap } from 'rxjs';
+import {
+  catchError,
+  filter,
+  finalize,
+  from,
+  of,
+  Subscription,
+  switchMap,
+  tap,
+} from 'rxjs';
 import {
   BoxDetail,
   BoxOpening,
@@ -23,6 +32,7 @@ export class BoxDetailComponent implements OnInit, OnDestroy {
   boxOpening: BoxOpening[] = [];
   isAuthenticated$ = this.store.select(isAuthenticated);
   isAuthenticated = false;
+  error = '';
 
   private subscription = new Subscription();
 
@@ -64,6 +74,7 @@ export class BoxDetailComponent implements OnInit, OnDestroy {
       return;
     }
 
+    this.error = '';
     this.opening = true;
 
     this.boxService
@@ -72,7 +83,15 @@ export class BoxDetailComponent implements OnInit, OnDestroy {
         boxId: this.box.id,
         multiplierBoxBet: 0,
       })
-      .pipe(finalize(() => (this.opening = false)))
+      .pipe(
+        finalize(() => (this.opening = false)),
+        catchError((error) => {
+          this.error = error;
+
+          return of(null);
+        }),
+        filter(Boolean)
+      )
       .subscribe((data) => {
         this.boxOpening = data;
       });
