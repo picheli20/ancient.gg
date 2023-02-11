@@ -13,11 +13,14 @@ export function createApollo(httpLink: HttpLink) {
     withCredentials: true,
   });
 
-  const ws = new GraphQLWsLink(
-    createClient({
-      url: environment.graphql.ws,
-    })
-  );
+  const ws =
+    typeof window !== 'undefined'
+      ? new GraphQLWsLink(
+          createClient({
+            url: environment.graphql.ws,
+          })
+        )
+      : http;
 
   // The split function takes three parameters:
   //

@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ancient.gg",
+            "outputPath": "dist/ancient.gg/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -111,12 +111,72 @@
         "deploy": {
           "builder": "@angular/fire:deploy",
           "options": {
+            "serverTarget": "app:server:production",
+            "prerenderTarget": "app:prerender:production",
             "prerender": false,
             "ssr": false,
             "browserTarget": "ancient.gg:build:production",
             "firebaseProject": "ancientgg-2f399",
             "firebaseHostingSite": "ancientgg-2f399"
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/ancient.gg/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ],
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "ancient.gg:build:development",
+              "serverTarget": "ancient.gg:server:development"
+            },
+            "production": {
+              "browserTarget": "ancient.gg:build:production",
+              "serverTarget": "ancient.gg:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ancient.gg:build:production",
+              "serverTarget": "ancient.gg:server:production"
+            },
+            "development": {
+              "browserTarget": "ancient.gg:build:development",
+              "serverTarget": "ancient.gg:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

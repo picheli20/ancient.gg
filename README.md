@@ -22,3 +22,4 @@ Apart from what you can see on `/app` folder, there are a few extra things that 
 - The app is deployed on firebase hosting ([link](https://ancientgg-2f399.web.app/))
 - Is there dark and light more according the user's color scheme
 - Is a basic PWA
+- Is integrated with Angular Universal

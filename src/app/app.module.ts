@@ -18,7 +18,7 @@ import { userReducer } from './shared/store/reducer/user.reducer';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
