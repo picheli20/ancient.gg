@@ -1,23 +1,24 @@
-## You can access the live version of this website at [https://ancientgg-2f399.web.app/](https://ancientgg-2f399.web.app/)
+> You can access the live version of this website at [https://ancientgg-2f399.web.app/](https://ancientgg-2f399.web.app/)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
+## Development
 
-## Development server
+Available `npm` commands:
 
-Run `npm run serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- `serve`: will start the application in development mode
+- `build`: to build the application
+- `deploy`: to deploy using firebase hosting.
+- `start:watch`: for starting the app on develop mode from the build
+- `test`: to run unit tests using [Jest](https://jestjs.io/)
+- `test:watch`: runs Jest on watch mode (live-reload)
+- `pretty`: run pretty (used on `husky`'s pre-commit hook)
+- `lint`: to lint the projecet
 
-## Code scaffolding
+## Apart from the Angular code...
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Apart from what you can see on `/app` folder, there are a few extra things that might worth to highlight:
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `npm run test` or `npm run test:watch` (to have live refresh) to execute the unit tests via [Jest](https://jestjs.io/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Few commit hooks with `husky` (code and commit lint and code prettifier)
+- Testing engine was replaced to Jest
+- The app is deployed on firebase hosting ([link](https://ancientgg-2f399.web.app/))
+- Is there dark and light more according the user's color scheme
+- Is a basic PWA
